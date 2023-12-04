@@ -29,7 +29,7 @@ public class GameController {
             }
 
             try {
-                Thread.sleep(50);
+                Thread.sleep(view.Config.fps);
             } catch (Exception e) {
             }
         }

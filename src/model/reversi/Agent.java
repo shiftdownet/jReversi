@@ -29,10 +29,14 @@ public class Agent {
         if (possibleCases.size() == 0)
             return null;
 
+        int next = (new java.util.Random()).nextInt(possibleCases.size());
+
         Position at = null;
         for ( Position position : possibleCases.keySet() ) {
-            at = position;
-            break;
+            if ( next-- == 0 ) {
+                at = position;
+                break;
+            }
         }
         return at;
     }
