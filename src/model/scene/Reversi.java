@@ -46,18 +46,18 @@ public class Reversi implements model.IScene {
     }
 
     public void main() {
-        if ( !referee.conductGame() ) {
-            this.timer = System.currentTimeMillis();
-        }
-        boardPanel.repaint();
-        infoPanel.repaint();
-
-        // Wait 30 frame before exit.
         if ( this.timer != 0 ) {
-            if ( System.currentTimeMillis() - this.timer > view.Config.fps * 30 ) {
+            if ( ( System.currentTimeMillis() - this.timer ) > view.Config.fps * 10 ) {
                 this.next = new Exit();
             }
+        }else{
+            if ( !referee.conductGame() ) {
+                this.timer = System.currentTimeMillis();
+            }
         }
+
+        boardPanel.repaint();
+        infoPanel.repaint();
     }
 
     public void exit() {
