@@ -33,11 +33,11 @@ public class Reversi implements model.IScene {
         referee.startGame();
 
         boardPanel = new view.reversi.BoardPanel(board);
-        boardPanel.setBackground(Color.GREEN);
+        boardPanel.setBackground(Color.GRAY);
         boardPanel.setBounds(0,0,CellImage.SIZE_X * Board.LAST.x(),800);
 
         infoPanel = new view.reversi.InfoPanel(board);
-        infoPanel.setBackground(Color.GRAY);
+        infoPanel.setBackground(Color.darkGray);
         infoPanel.setBounds(CellImage.SIZE_X * Board.LAST.x(),0,360,800);
         
         view.ViewManager.getInstance().window.add(boardPanel);
