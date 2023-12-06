@@ -11,7 +11,11 @@ import view.reversi.InfoPanel;
 
 import java.awt.Color;
 
+import controller.Player;
 import model.IScene;
+
+import java.awt.event.*;
+
 
 public class Reversi implements model.IScene {
     private Board board;
@@ -24,7 +28,7 @@ public class Reversi implements model.IScene {
     public void entry() {
         board = new Board();
         referee = new Referee();
-        Agent agent1 = new Agent(Disk.black);
+        Agent agent1 = new Player(Disk.black);
         Agent agent2 = new Agent(Disk.white);
 
         referee.prepareBoard(board);
@@ -35,13 +39,15 @@ public class Reversi implements model.IScene {
         boardPanel = new view.reversi.BoardPanel(board);
         boardPanel.setBackground(Color.GRAY);
         boardPanel.setBounds(0,0,CellImage.SIZE_X * Board.LAST.x(),800);
+        boardPanel.addMouseListener((MouseListener)agent1);
+        ((Player)agent1).setBoardPanel( boardPanel );
 
         infoPanel = new view.reversi.InfoPanel(board);
         infoPanel.setBackground(Color.darkGray);
         infoPanel.setBounds(CellImage.SIZE_X * Board.LAST.x(),0,360,800);
         
-        view.ViewManager.getInstance().window.add(boardPanel);
-        view.ViewManager.getInstance().window.add(infoPanel);
+        view.ViewManager.getInstance().window.add(boardPanel, view.ViewManager.INDEX_BOARD_PANE);
+        view.ViewManager.getInstance().window.add(infoPanel, view.ViewManager.INDEX_INFO_PANE);
         view.ViewManager.getInstance().window.setVisible(true);
     }
 

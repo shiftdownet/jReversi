@@ -6,6 +6,9 @@ public class ViewManager {
     private static ViewManager singletonViewManager = new ViewManager();
     public Window window;
 
+    static final public int INDEX_BOARD_PANE = 0;
+    static final public int INDEX_INFO_PANE = 1;
+
     private ViewManager(){
     }
 

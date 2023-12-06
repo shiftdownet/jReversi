@@ -36,12 +36,13 @@ public class Referee {
                     return false;
                 }
                 passedInPrevTurn = true;
+                this.disk = this.disk.back();
             } else {
-                this.board.put(this.disk, position);
-                passedInPrevTurn = false;
+                if ( 0 < this.board.put(this.disk, position) ) {
+                    passedInPrevTurn = false;
+                    this.disk = this.disk.back();
+                }
             }
-
-            this.disk = this.disk.back();
         }
 
         return true;

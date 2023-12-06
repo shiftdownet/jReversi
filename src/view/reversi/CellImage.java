@@ -1,7 +1,10 @@
 
 package view.reversi;
 
+import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.image.ImageObserver;
 
 import model.reversi.Cell;
 import model.reversi.Disk;
@@ -11,6 +14,7 @@ public class CellImage {
     private Cell cell;
     private Disk prevDisk;
     private ICellAnim cellAnim;
+    private Rectangle rect;
 
     public static final Integer SIZE_X = 72;
     public static final Integer SIZE_Y = 72;
@@ -32,7 +36,7 @@ public class CellImage {
         }
     }
     
-    public Image object() {
+    public Image image() {
         if ( ( this.prevDisk == Disk.empty ) && ( this.cell.disk() == Disk.white ) ) {
             this.cellAnim = new PutWhiteDisk();
         }
@@ -48,5 +52,17 @@ public class CellImage {
         this.prevDisk = this.cell.disk();
 
         return this.cellAnim.anim();
+    }
+
+    public void setBounds(final Rectangle rect) {
+        this.rect = rect;
+    }
+    
+    public Rectangle getBounds() {
+        return this.rect;
+    }
+
+    public void draw(Graphics g, ImageObserver o){
+        g.drawImage(this.image(), this.rect.x, this.rect.y, this.rect.width, this.rect.height, o);
     }
 }

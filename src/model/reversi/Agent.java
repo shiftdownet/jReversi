@@ -4,8 +4,8 @@ package model.reversi;
 import java.util.HashMap;
 
 public class Agent {
-    private Disk disk;
-    private Board board;
+    protected Disk disk;
+    protected Board board;
 
     public Agent(final Disk disk) {
         this.disk = disk;
