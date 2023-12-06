@@ -7,17 +7,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class PutBlackDisk implements ICellAnim {
-    long timer = 0;
+    int frame = 0;
 
     public PutBlackDisk() {
-        this.timer = System.currentTimeMillis();
+        this.frame = 0;
     }
 
     public Image anim() {
-        long elapsed = System.currentTimeMillis() - this.timer;
-
         Path path;
-        switch ( (int)(elapsed / view.Config.fps) ) {
+        switch ( this.frame++ ) {
             case 0:
                 path = Paths.get("res/black_cell_1.png");
                 break;

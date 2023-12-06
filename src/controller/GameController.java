@@ -16,21 +16,20 @@ public class GameController {
         System.out.println("Enter to " + scene);
         scene.entry();
 
+        PeriodicityGenerator pGenerator = new PeriodicityGenerator();
+
         while( !(scene instanceof Exit) ) {
-            scene.main();
+            if ( pGenerator.elapsed() ) {
+                scene.main();
 
-            IScene next = scene.next();
-            if ( next != null ) {
-                System.out.println("Exit from " + scene);
-                scene.exit();
-                scene = next;
-                System.out.println("Enter to " + scene);
-                scene.entry();
-            }
-
-            try {
-                Thread.sleep(view.Config.fps);
-            } catch (Exception e) {
+                IScene next = scene.next();
+                if ( next != null ) {
+                    System.out.println("Exit from " + scene);
+                    scene.exit();
+                    scene = next;
+                    System.out.println("Enter to " + scene);
+                    scene.entry();
+                }
             }
         }
     }

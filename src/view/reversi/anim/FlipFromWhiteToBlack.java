@@ -7,17 +7,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FlipFromWhiteToBlack implements ICellAnim {
-    long timer = 0;
+    int frame = 0;
 
     public FlipFromWhiteToBlack() {
-        this.timer = System.currentTimeMillis();
+        this.frame = 0;
     }
 
     public Image anim() {
-        long elapsed = System.currentTimeMillis() - this.timer;
-
         Path path;
-        switch ( (int)(elapsed / view.Config.fps) ) {
+        switch ( this.frame++ ) {
             case 0:
                 path = Paths.get("res/white_cell_3.png");
                 break;

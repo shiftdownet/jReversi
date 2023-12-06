@@ -7,10 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class White implements ICellAnim {
-    long timer = 0;
 
     public White() {
-        this.timer = System.currentTimeMillis();
     }
 
     public Image anim() {

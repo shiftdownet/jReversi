@@ -19,7 +19,7 @@ public class Reversi implements model.IScene {
     private BoardPanel boardPanel;
     private InfoPanel infoPanel;
     private IScene next = null;
-    private long timer = 0;
+    private long counter = 0;
 
     public void entry() {
         board = new Board();
@@ -46,13 +46,10 @@ public class Reversi implements model.IScene {
     }
 
     public void main() {
-        if ( this.timer != 0 ) {
-            if ( ( System.currentTimeMillis() - this.timer ) > view.Config.fps * 10 ) {
+        if ( !referee.conductGame() ) {
+            this.counter++;
+            if ( this.counter > 10 ) {
                 this.next = new Exit();
-            }
-        }else{
-            if ( !referee.conductGame() ) {
-                this.timer = System.currentTimeMillis();
             }
         }
 
