@@ -8,7 +8,7 @@ public class Referee {
     private Disk disk = Disk.black;
     private Boolean passedInPrevTurn = false;
 
-    public void prepareBoard( final Board board ) {
+    public void prepareBoard(final Board board) {
         this.board = board;
         this.board.at(Board.D4).put(Disk.white);
         this.board.at(Board.D5).put(Disk.black);
@@ -23,7 +23,7 @@ public class Referee {
 
     public void startGame() {
     }
-    
+
     public boolean conductGame() {
         final Agent currentAgent = this.getAgentBy(this.disk);
         currentAgent.grasp(this.board);
@@ -32,13 +32,13 @@ public class Referee {
             final Position position = currentAgent.move();
 
             if (position == null) {
-                if ( this.passedInPrevTurn ) {
+                if (this.passedInPrevTurn) {
                     return false;
                 }
                 passedInPrevTurn = true;
                 this.disk = this.disk.back();
             } else {
-                if ( 0 < this.board.put(this.disk, position) ) {
+                if (0 < this.board.put(this.disk, position)) {
                     passedInPrevTurn = false;
                     this.disk = this.disk.back();
                 }

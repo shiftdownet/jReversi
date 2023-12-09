@@ -19,7 +19,7 @@ public class Agent {
         return true;
     }
 
-    public void grasp( final Board board ) {
+    public void grasp(final Board board) {
         this.board = board;
     }
 
@@ -32,8 +32,8 @@ public class Agent {
         int next = (new java.util.Random()).nextInt(possibleCases.size());
 
         Position at = null;
-        for ( Position position : possibleCases.keySet() ) {
-            if ( next-- == 0 ) {
+        for (Position position : possibleCases.keySet()) {
+            if (next-- == 0) {
                 at = position;
                 break;
             }

@@ -14,8 +14,8 @@ public class PeriodicityGenerator {
     public boolean elapsed() {
         final long currentTime = System.currentTimeMillis();
         final long elapsedTime = currentTime - this.prevTime;
-        if ( this.msPerFrame < elapsedTime ) {
-            this.prevTime = currentTime - ( elapsedTime % this.msPerFrame );
+        if (this.msPerFrame < elapsedTime) {
+            this.prevTime = currentTime - (elapsedTime % this.msPerFrame);
             return true;
         }
         return false;

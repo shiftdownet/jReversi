@@ -2,13 +2,13 @@
 package controller;
 
 import java.util.HashMap;
-import model.scene.Reversi;
+
 import model.reversi.Agent;
 import model.reversi.Board;
 import model.reversi.Disk;
 import model.reversi.NextBoardProvider;
 import model.reversi.Position;
-import gui.reversi.BoardPanel;
+import model.scene.Reversi;
 
 public class Player extends Agent {
     private Position at;

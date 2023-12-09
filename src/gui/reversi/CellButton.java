@@ -2,16 +2,13 @@
 package gui.reversi;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Insets;
-import java.nio.file.Paths;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 
-import model.reversi.Cell;
-import model.reversi.Disk;
 import gui.reversi.anim.Black;
 import gui.reversi.anim.Empty;
 import gui.reversi.anim.FlipFromBlackToWhite;
@@ -20,9 +17,8 @@ import gui.reversi.anim.ICellAnim;
 import gui.reversi.anim.PutBlackDisk;
 import gui.reversi.anim.PutWhiteDisk;
 import gui.reversi.anim.White;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import model.reversi.Cell;
+import model.reversi.Disk;
 
 public class CellButton extends JButton implements ActionListener {
     private Cell cell;

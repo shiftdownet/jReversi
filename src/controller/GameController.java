@@ -1,9 +1,9 @@
 
 package controller;
 
-
 import model.IScene;
-import model.scene.*;
+import model.scene.Entry;
+import model.scene.Exit;
 
 public class GameController {
     public GameController() {
@@ -18,12 +18,12 @@ public class GameController {
 
         PeriodicityGenerator pGenerator = new PeriodicityGenerator();
 
-        while( !(scene instanceof Exit) ) {
-            if ( pGenerator.elapsed() ) {
+        while (!(scene instanceof Exit)) {
+            if (pGenerator.elapsed()) {
                 scene.main();
 
                 IScene next = scene.next();
-                if ( next != null ) {
+                if (next != null) {
                     System.out.println("Exit from " + scene);
                     scene.exit();
                     scene = next;
