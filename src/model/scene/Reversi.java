@@ -5,23 +5,19 @@ import model.reversi.Agent;
 import model.reversi.Board;
 import model.reversi.Disk;
 import model.reversi.Referee;
-import view.reversi.BoardPanel;
-import view.reversi.CellImage;
-import view.reversi.InfoPanel;
+import gui.reversi.BoardPanel;
+import gui.reversi.InfoPanel;
 
 import java.awt.Color;
 
 import controller.Player;
 import model.IScene;
 
-import java.awt.event.*;
-
-
 public class Reversi implements model.IScene {
     private Board board;
     private Referee referee;
-    private BoardPanel boardPanel;
-    private InfoPanel infoPanel;
+    static private BoardPanel boardPanel;
+    static private InfoPanel infoPanel;
     private IScene next = null;
     private long counter = 0;
 
@@ -36,26 +32,24 @@ public class Reversi implements model.IScene {
 
         referee.startGame();
 
-        boardPanel = new view.reversi.BoardPanel(board);
+        boardPanel = new gui.reversi.BoardPanel(board);
         boardPanel.setBackground(Color.GRAY);
-        boardPanel.setBounds(0,0,CellImage.SIZE_X * Board.LAST.x(),800);
-        boardPanel.addMouseListener((MouseListener)agent1);
-        ((Player)agent1).setBoardPanel( boardPanel );
+        boardPanel.setBounds(0, 0, 720, 800);
 
-        infoPanel = new view.reversi.InfoPanel(board);
+        infoPanel = new gui.reversi.InfoPanel(board);
         infoPanel.setBackground(Color.darkGray);
-        infoPanel.setBounds(CellImage.SIZE_X * Board.LAST.x(),0,360,800);
-        
-        view.ViewManager.getInstance().window.add(boardPanel, view.ViewManager.INDEX_BOARD_PANE);
-        view.ViewManager.getInstance().window.add(infoPanel, view.ViewManager.INDEX_INFO_PANE);
-        view.ViewManager.getInstance().window.setVisible(true);
+        infoPanel.setBounds(720, 0, 360, 800);
+
+        gui.GuiManager.getInstance().window.add(boardPanel, gui.GuiManager.INDEX_BOARD_PANE);
+        gui.GuiManager.getInstance().window.add(infoPanel, gui.GuiManager.INDEX_INFO_PANE);
+        gui.GuiManager.getInstance().window.setVisible(true);
     }
 
     public void main() {
-        if ( !referee.conductGame() ) {
-            this.counter++;
-            if ( this.counter > 10 ) {
-                this.next = new Exit();
+        if (!referee.conductGame()) {
+            counter++;
+            if (counter > 10) {
+                next = new Exit();
             }
         }
 
@@ -68,6 +62,10 @@ public class Reversi implements model.IScene {
     }
 
     public model.IScene next() {
-        return this.next;
+        return next;
+    }
+
+    static public BoardPanel boardPanel() {
+        return boardPanel;
     }
 }

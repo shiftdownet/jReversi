@@ -1,15 +1,14 @@
 
-package view;
+package gui;
 
-
-public class ViewManager {
-    private static ViewManager singletonViewManager = new ViewManager();
+public class GuiManager {
+    private static GuiManager singletonGuiManager = new GuiManager();
     public Window window;
 
     static final public int INDEX_BOARD_PANE = 0;
     static final public int INDEX_INFO_PANE = 1;
 
-    private ViewManager(){
+    private GuiManager() {
     }
 
     public void createWindow() {
@@ -18,7 +17,7 @@ public class ViewManager {
         window.setLayout(null);
     }
 
-    public static ViewManager getInstance(){
-        return singletonViewManager;
+    public static GuiManager getInstance() {
+        return singletonGuiManager;
     }
 }

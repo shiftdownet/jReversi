@@ -1,8 +1,11 @@
 
 package model.reversi;
 
+import java.util.ArrayList;
+
 public class Board implements Cloneable {
     private Cell[][] cells;
+    private ArrayList<Position> positions;
 
     public static final Integer SENTINEL = 1;
     public static final Integer SIZE = 8 + (SENTINEL * 2);
@@ -20,9 +23,20 @@ public class Board implements Cloneable {
         this.cells = new Cell[Board.SIZE][Board.SIZE];
         for (Integer y = Board.FIRST.y(); y < Board.LAST.y(); y++) {
             for (Integer x = Board.FIRST.x(); x < Board.LAST.x(); x++) {
-                this.cells[y][x] = new Cell();
+                this.cells[y][x] = new Cell(new Position(y, x));
             }
         }
+
+        positions = new ArrayList<Position>();
+        for (Integer y = Board.A1.y(); y <= Board.H8.y(); y++) {
+            for (Integer x = Board.A1.x(); x <= Board.H8.x(); x++) {
+                positions.add(new Position(y, x));
+            }
+        }
+    }
+
+    public ArrayList<Position> positions() {
+        return this.positions;
     }
 
     public Cell at(final Position pos) {
@@ -52,7 +66,7 @@ public class Board implements Cloneable {
                             if (this.at(offsetPos).is(mineDisk)) {
                                 // Actually flip.
                                 for (offsetPos = offsetPos.sub(direction); this.at(offsetPos)
-                                .isBackOf(mineDisk); offsetPos = offsetPos.sub(direction)) {
+                                        .isBackOf(mineDisk); offsetPos = offsetPos.sub(direction)) {
                                     this.at(offsetPos).flip();
                                 }
                                 totalNumberOfDisksToFlip += numberOfBackSideDisks;
@@ -61,7 +75,7 @@ public class Board implements Cloneable {
                     }
                 }
             }
-            if ( 0 < totalNumberOfDisksToFlip ) {
+            if (0 < totalNumberOfDisksToFlip) {
                 this.at(at).put(mineDisk);
             }
         }
@@ -70,11 +84,10 @@ public class Board implements Cloneable {
 
     public Integer count(final Disk disk) {
         Integer numberOfDisk = 0;
-        for (Integer y = Board.A1.y(); y <= Board.H8.y(); y++) {
-            for (Integer x = Board.A1.x(); x <= Board.H8.x(); x++) {
-                if (this.at(new Position(y, x)).is(disk)) {
-                    numberOfDisk++;
-                }
+
+        for (Position pos : this.positions()) {
+            if (this.at(pos).is(disk)) {
+                numberOfDisk++;
             }
         }
         return numberOfDisk;

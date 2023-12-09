@@ -1,8 +1,6 @@
 
-package view.reversi.anim;
+package gui.reversi.anim;
 
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -13,9 +11,10 @@ public class FlipFromWhiteToBlack implements ICellAnim {
         this.frame = 0;
     }
 
-    public Image anim() {
+    public Path getImagePath() {
+
         Path path;
-        switch ( this.frame++ ) {
+        switch (this.frame++) {
             case 0:
                 path = Paths.get("res/white_cell_3.png");
                 break;
@@ -42,7 +41,7 @@ public class FlipFromWhiteToBlack implements ICellAnim {
                 break;
         }
 
-        return Toolkit.getDefaultToolkit().getImage(path.toString());
+        return path;
     }
 
 }

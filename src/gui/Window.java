@@ -1,13 +1,13 @@
 
-package view;
+package gui;
 
 import javax.swing.JFrame;
 
 public class Window extends JFrame {
     public Window() {
-        super("title");
+        super("jReversi");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1080,800);
+        setSize(1080, 800);
         setLocationRelativeTo(null);
         setResizable(false);
     }

@@ -3,6 +3,15 @@ package model.reversi;
 
 public class Cell implements Cloneable {
     private Disk disk = Disk.empty;
+    private Position pos = null;
+
+    public Cell(final Position pos) {
+        this.pos = pos;
+    }
+
+    public Position pos() {
+        return this.pos;
+    }
 
     public void put(Disk disk) {
         this.disk = disk;
@@ -24,7 +33,7 @@ public class Cell implements Cloneable {
         return (this.disk == Disk.empty);
     }
 
-    public Disk disk(){
+    public Disk disk() {
         return this.disk;
     }
 
@@ -34,6 +43,7 @@ public class Cell implements Cloneable {
         try {
             clonedCell = (Cell) super.clone();
             clonedCell.disk = this.disk;
+            clonedCell.pos = this.pos;
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
