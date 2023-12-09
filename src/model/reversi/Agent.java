@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class Agent {
     protected Disk disk;
     protected Board board;
+    protected Integer counter = 1;
 
     public Agent(final Disk disk) {
         this.disk = disk;
@@ -16,7 +17,7 @@ public class Agent {
     }
 
     public boolean decided() {
-        return true;
+        return (counter++ % 20) == 0;
     }
 
     public void grasp(final Board board) {
